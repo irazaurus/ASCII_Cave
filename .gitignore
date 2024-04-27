@@ -364,3 +364,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/ASCII_Cave.vcxproj
+/ASCII_Cave.vcxproj.filters
