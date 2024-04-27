@@ -1,22 +1,46 @@
 ﻿#include <fstream>
 #include <iostream>
 #include "Room.h"
+#include "NPC.h"
 #include "ConsoleManager.h"
 
 int main()
 {
-    // opening the rooms file
-    std::ifstream inputRooms;
-    inputRooms.open("rooms.txt");
-    if (inputRooms.fail())
+    // TODO перенести загрузку в другой класс. Возможно?
+
+    // load rooms
+    std::ifstream input;
+    input.open("rooms.txt");
+    if (input.fail())
     {
         std::cout << "Problems with opening rooms file.";
         return 1;
     }
-
     RoomRegistry roomReg;
-    roomReg.loadFromStream(inputRooms);
-    int currRoomId = 0; // later load currRoom from save file
+    roomReg.loadFromStream(input);
+    input.close();
+    int currRoomId = 0; // TODO load currRoom from save file
+
+    // load NPC
+    input.open("npc.txt");
+    if (input.fail())
+    {
+        std::cout << "Problems with opening NPC file.";
+        return 1;
+    }
+    NPCRegister npcReg;
+    npcReg.loadFromStream(input);
+    input.close();
+
+    // load NPC drawings
+    input.open("npc_drawings.txt");
+    if (input.fail())
+    {
+        std::cout << "Problems with opening NPC drawings file.";
+        return 1;
+    }
+    npcReg.loadDrawFromStream(input);
+    input.close();
 
     OutputManager outManager;
     InputManager inManager;

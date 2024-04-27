@@ -5,7 +5,7 @@
 const RoomDef* RoomRegistry::getRoomDef(int id) const
 {
 	if (id >= 0 && id < rooms_.size()) return &rooms_[id];
-	return nullptr;
+	return nullptr; // TODO обработать
 }
 
 void RoomRegistry::loadFromStream(std::istream& stream)

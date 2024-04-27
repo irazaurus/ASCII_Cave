@@ -6,7 +6,6 @@ class OutputManager
 {
 public:
 	void gameStart();
-	void listChoices();
 };
 
 class InputManager
