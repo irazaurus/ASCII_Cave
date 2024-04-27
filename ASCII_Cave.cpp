@@ -1,5 +1,7 @@
 ﻿#include <fstream>
 #include <iostream>
+#include "Room.h"
+#include "ConsoleManager.h"
 
 int main()
 {
@@ -12,7 +14,25 @@ int main()
         return 1;
     }
 
+    RoomRegistry roomReg;
+    roomReg.loadFromStream(inputRooms);
+    int currRoomId = 0; // later load currRoom from save file
 
+    OutputManager outManager;
+    InputManager inManager;
+    outManager.gameStart();
 
-    std::cout << "Welcome to the ASCII CAVE!\n";
+    // game loop
+    while (true)
+    {
+        const RoomDef* currRoom = roomReg.getRoomDef(currRoomId);
+        std::vector<std::string> choices;
+        for (size_t i = 0; i < currRoom->k.size(); i++)
+        {
+            const RoomDef* r = roomReg.getRoomDef(currRoom->k[i]);
+            choices.push_back("Room No " + std::to_string(r->id));
+        }
+
+        currRoomId = std::stoi(inManager.getChoice("Where to go?", &choices));
+    }
 }

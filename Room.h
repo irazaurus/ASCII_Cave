@@ -1,11 +1,13 @@
 #pragma once
 #include <vector>
+#include <iostream>
 
 struct RoomDef
 {
 	int id;
 	std::vector<int> k; // connected rooms
-	int traps[10];
+	int traps;
+	int treasures;
 	// monsters
 };
 
