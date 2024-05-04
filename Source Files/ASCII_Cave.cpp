@@ -1,8 +1,8 @@
 ﻿#include <fstream>
 #include <iostream>
-#include "Room.h"
-#include "NPC.h"
-#include "ConsoleManager.h"
+#include "../Headers/Room.h"
+#include "../Headers/NPC.h"
+#include "../Headers/ConsoleManager.h"
 
 int main()
 {
