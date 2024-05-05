@@ -1,4 +1,4 @@
-#include "Trap.h"
+#include "../Headers/Trap.h"
 
 TrapDef* TrapRegistry::getTrapDef(int id)
 {

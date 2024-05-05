@@ -1,4 +1,4 @@
-#include "NPC.h"
+#include "../Headers/NPC.h"
 #include <iostream>
 #include <cassert>
 
