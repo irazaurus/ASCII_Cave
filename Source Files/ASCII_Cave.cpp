@@ -1,46 +1,20 @@
-﻿#include <fstream>
-#include <iostream>
+﻿#include <iostream>
 #include "../Headers/Room.h"
 #include "../Headers/NPC.h"
 #include "../Headers/ConsoleManager.h"
+#include "../Headers/Loader.h"
 
 int main()
 {
-    // TODO перенести загрузку в другой класс
-
-    // load rooms
-    std::ifstream input;
-    input.open("rooms.txt");
-    if (input.fail())
-    {
-        std::cout << "Problems with opening rooms file.";
-        return 1;
-    }
+    Loader load;
     RoomRegistry roomReg;
-    roomReg.loadFromStream(input);
-    input.close();
-    int currRoomId = 0; // TODO load currRoom from save file
-
-    // load NPC
-    input.open("npc.txt");
-    if (input.fail())
-    {
-        std::cout << "Problems with opening NPC file.";
-        return 1;
-    }
     NPCRegister npcReg;
-    npcReg.loadFromStream(input);
-    input.close();
 
-    // load NPC drawings
-    input.open("npc_drawings.txt");
-    if (input.fail())
-    {
-        std::cout << "Problems with opening NPC drawings file.";
-        return 1;
-    }
-    npcReg.loadDrawFromStream(input);
-    input.close();
+    // load rooms & NPC
+    load.loadRooms(&roomReg);
+    load.loadNPC(&npcReg);
+
+    int currRoomId = 0; // TODO load currRoom from save file
 
     OutputManager outManager;
     InputManager inManager;
@@ -59,4 +33,6 @@ int main()
 
         currRoomId = std::stoi(inManager.getChoice("Where to go?", &choices));
     }
+
+    return 0;
 }

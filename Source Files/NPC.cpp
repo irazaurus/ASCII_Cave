@@ -31,7 +31,6 @@ void NPCRegister::loadFromStream(std::istream& stream)
 	for (size_t i = 0; i < N; i++)
 	{
 		NPCDef tempDef;
-		int inp;
 
 		// id
 		std::getline(stream, input);
