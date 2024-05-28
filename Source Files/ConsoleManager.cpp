@@ -3,7 +3,11 @@
 
 void OutputManager::gameStart()
 {
-	std::cout << "Welcome to the ASCII CAVE!\n";
+	std::cout << "Welcome to the ASCII CAVE!\n"
+			  << "The King chose you to fight with a dragon....\n"
+			  << "(Press Enter...) ";
+	std::cin.ignore();
+	//TODO dialog with a King
 }
 
 std::string InputManager::getChoice(std::string question, std::vector<std::string>* choices)

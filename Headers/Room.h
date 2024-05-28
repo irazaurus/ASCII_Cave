@@ -1,22 +1,20 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <stack>
+#include <memory>
+#include "../Headers/Engine.h"
+#include "../Headers/Trap.h"
+#include "../Headers/Fight.h"
 
 struct RoomDef
 {
 	int id;
+	std::string description;
+	std::unique_ptr<Trigger> triggers[20];
 	std::vector<int> k; // connected rooms
-	int traps;
-	int treasures;
-	// monsters
-};
+	std::vector<std::string> npc;
+	std::stack<int> traps;
+	};
 
-class RoomRegistry
-{
-private:
-	std::vector<RoomDef> rooms_;
-
-public:
-	const RoomDef* getRoomDef(int id) const;
-	void loadFromStream(std::istream& stream);
-};
+bool loadFromStream(std::istream& stream, RoomDef& itemDef);

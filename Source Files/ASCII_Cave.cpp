@@ -1,37 +1,61 @@
 ﻿#include <iostream>
+#include <algorithm>
 #include "../Headers/Room.h"
+#include "../Headers/Trap.h"
 #include "../Headers/NPC.h"
 #include "../Headers/ConsoleManager.h"
 #include "../Headers/Loader.h"
+#include "../Headers/Engine.h"
+#include "../Headers/Player.h"
 
 int main()
 {
+    srand(time(0));
     Loader load;
-    RoomRegistry roomReg;
-    NPCRegister npcReg;
+    Player player;
+    Registry<RoomDef> roomReg;
+    Registry<TrapDef> trapReg;
+    Registry<NPCDef> npcReg;
 
-    // load rooms & NPC
-    load.loadRooms(&roomReg);
-    load.loadNPC(&npcReg);
+    // load from files
+    load.loadRooms(roomReg);
+    load.loadNPC(npcReg);
+    load.loadTraps(trapReg);
 
-    int currRoomId = 0; // TODO load currRoom from save file
+    int currRoomId = 0;
+    int choice;
 
     OutputManager outManager;
     InputManager inManager;
     outManager.gameStart();
 
     // game loop
-    while (true)
-    {
-        const RoomDef* currRoom = roomReg.getRoomDef(currRoomId);
+    while (true) {
+
+        system("cls");
+        const RoomDef* currRoom = roomReg.getDef(currRoomId);
+        std::cout << currRoom->description << std::endl;
+
+        // triggers
+        for (int i = 0; i < sizeof(currRoom->triggers); i++) {
+            if (currRoom->triggers[i] == nullptr) break;
+            currRoom->triggers[i]->execute(); // TODO обработка
+        }
+
+        // choices to go
         std::vector<std::string> choices;
-        for (size_t i = 0; i < currRoom->k.size(); i++)
-        {
-            const RoomDef* r = roomReg.getRoomDef(currRoom->k[i]);
+        for (size_t i = 0; i < currRoom->k.size(); i++) {
+            const RoomDef* r = roomReg.getDef(currRoom->k[i]);
             choices.push_back("Room No " + std::to_string(r->id));
         }
 
-        currRoomId = std::stoi(inManager.getChoice("Where to go?", &choices));
+        do {
+            choice = std::stoi(inManager.getChoice("Where to go?", &choices));
+            system("cls");
+        } while (std::find(currRoom->k.begin(), currRoom->k.end(), choice) == currRoom->k.end());
+
+        currRoomId = choice;
+        choices.clear();
     }
 
     return 0;

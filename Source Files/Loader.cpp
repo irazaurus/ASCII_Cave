@@ -11,26 +11,33 @@ bool Loader::openFile(std::string name)
     stream.open(name);
     if (stream.fail())
     {
-        std::cout << "Problems with opening " << name << " file.";
+        std::cout << "Problems with opening " << name << " file.\n";
         return false;
     }
 	return true;
 }
 
-void Loader::loadRooms(RoomRegistry* roomReg)
+void Loader::loadRooms(Registry<RoomDef>& roomReg)
 {
-    openFile("C:\\Users\\Artem_Step\\source\\repos\\ASCII_Cave\\Resources\\rooms.txt");
-    roomReg->loadFromStream(stream);
+    openFile("C:\\Users\\pyuchy\\source\\repos\\ASCII_Cave\\Resources\\rooms.txt");
+    roomReg.loadFromStream(stream);
     stream.close();
 }
 
-void Loader::loadNPC(NPCRegister* npcReg)
+void Loader::loadNPC(Registry<NPCDef>& npcReg)
 {
-    openFile("C:\\Users\\Artem_Step\\source\\repos\\ASCII_Cave\\Resources\\npc.txt");
-    npcReg->loadFromStream(stream);
+    openFile("C:\\Users\\pyuchy\\source\\repos\\ASCII_Cave\\Resources\\npc.txt");
+    npcReg.loadFromStream(stream);
     stream.close();
 
-    openFile("C:\\Users\\Artem_Step\\source\\repos\\ASCII_Cave\\Resources\\npc_drawings.txt");
-    npcReg->loadDrawFromStream(stream);
+    //openFile("C:\\Users\\pyuchy\\source\\repos\\ASCII_Cave\\Resources\\npc_drawings.txt");
+    //npcReg->loadDrawFromStream(stream);
+    //stream.close();
+}
+
+void Loader::loadTraps(Registry<TrapDef>& trapReg)
+{
+    openFile("C:\\Users\\pyuchy\\source\\repos\\ASCII_Cave\\Resources\\traps.txt");
+    trapReg.loadFromStream(stream);
     stream.close();
 }

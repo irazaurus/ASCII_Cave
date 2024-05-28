@@ -2,46 +2,50 @@
 #include <iostream>
 #include <string>
 
-const RoomDef* RoomRegistry::getRoomDef(int id) const
+bool loadFromStream(std::istream& stream, RoomDef& itemDef)
 {
-	if (id >= 0 && id < rooms_.size()) return &rooms_[id];
-	return nullptr; // TODO обработать
-}
-
-void RoomRegistry::loadFromStream(std::istream& stream)
-{
-	rooms_.clear();
-
-	int N = 0;
-	stream >> N;
-
 	std::string input;
+	int inp;
+	// id
+	std::getline(stream, input);
+	if (input.empty()) { return false; }
+	itemDef.id = std::stoi(input);
 
-	for (size_t i = 0; i < N; i++)
+	// description
+	std::getline(stream, input);
+	itemDef.description = input;
+
+	// triggers
+	stream >> inp;
+	for (int k = 0; k < inp; k++)
 	{
-		RoomDef tempDef;
-		int inp;
-		// id
-		std::getline(stream, input);
-		if (input.empty()) { i--; continue; }
-		tempDef.id = std::stoi(input);
-
-		// connected rooms k
-		std::getline(stream, input);
-		for (int k = std::stoi(input); k > 0; k--)
-		{
-			stream >> inp;
-			tempDef.k.push_back(std::move(inp));
-		}
-
-		// traps
-		stream >> inp;
-		tempDef.traps = inp;
-
-		// treasures
-		stream >> inp;
-		tempDef.treasures = inp;
-
-		rooms_.push_back(std::move(tempDef));
+		stream >> input;
+		itemDef.triggers[k] = std::unique_ptr<Trigger>(sToTrigger(input));
 	}
+
+	// connected rooms k
+	stream >> input;
+	for (int k = std::stoi(input); k > 0; k--)
+	{
+		stream >> inp;
+		itemDef.k.push_back(std::move(inp));
+	}
+
+	// npc
+	stream >> input;
+	for (int k = std::stoi(input); k > 0; k--)
+	{
+		stream >> input;
+		itemDef.npc.push_back(input);
+	}
+
+	// treasures
+	stream >> input;
+	for (int k = std::stoi(input); k > 0; k--)
+	{
+		stream >> input;
+		itemDef.traps.push(sToTrap(input));
+	}
+
+	return true;
 }

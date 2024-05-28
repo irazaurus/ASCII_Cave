@@ -17,20 +17,25 @@ struct NPCDef
 	int hp;
 	Alignment align;
 	int gold;        // amount of gold after killing it
-	std::vector<std::string> drawing;
+	std::string drawing[20];
 };
 
-class NPCRegister
-{
-private:
-	std::vector<NPCDef> npc_;
+bool loadFromStream(std::istream& stream, NPCDef& itemDef);
+Alignment sToAlignment(std::string str);
 
-public:
-	NPCDef* getNPCDef(int id);
-	NPCDef* getNPCDef(std::string name);
-	void loadFromStream(std::istream& stream);
-	void loadDrawFromStream(std::istream& stream);
-	Alignment sToAlignment(std::string str);
+// TODO drawings
 
-	void draw(int id);
-};
+//class NPCRegister
+//{
+//private:
+//	std::vector<NPCDef> npc_;
+//
+//public:
+//	NPCDef* getNPCDef(int id);
+//	NPCDef* getNPCDef(std::string name);
+//	void loadFromStream(std::istream& stream);
+//	void loadDrawFromStream(std::istream& stream);
+//	Alignment sToAlignment(std::string str);
+//
+//	void draw(int id);
+//};
