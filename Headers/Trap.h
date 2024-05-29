@@ -3,23 +3,24 @@
 #include <iostream>
 #include "../Headers/Engine.h"
 
-enum TRAP_TYPE{SPIKE, TRAP};
+enum TrapType { SPIKE, MANTRAP };
 
 struct TrapDef
 {
 	int id;
 	int damage;
-	TRAP_TYPE type;
+	TrapType type;
 };
 
 class TrapTrigger : public Trigger {
 private:
 	int modification_;
 public:
-	void setMod(int mod);
+	TriggerType type() { return TRAP; }
+	void setMod(int& mod);
 	bool execute();
 };
 
 bool loadFromStream(std::istream& stream, TrapDef& itemDef);
  
-TRAP_TYPE sToTrap(std::string str);
+TrapType sToTrap(std::string str);

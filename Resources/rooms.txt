@@ -1,15 +1,15 @@
 2
 
 0
-Вы зашли в небольшую пещерку в горе, из которой можно пройти в подземелье, куда вас послал король.
+You entered a small cave in a mountain. It is the place that The King has sent you to, for sure.
 0
 1 1
 0
 0
 
 1
-Вы вышли в просторную комнату, на потолку виднеются висящие существа. Назад пути нет.
+You went to the wide room. You see two creatures on the ceiling - there is no going back.
 4 trap fight fight win
 1 0
 2 bat bat
-1 spike
+1 0

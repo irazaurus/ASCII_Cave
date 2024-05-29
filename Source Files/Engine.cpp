@@ -8,11 +8,6 @@ bool WinTrigger::execute()
     return true;
 }
 
-//std::unique_ptr<Trigger> WinTrigger::clone()
-//{
-//    return std::make_unique<Trigger>(*this);
-//}
-
 bool LootTrigger::execute()
 {
     return false;

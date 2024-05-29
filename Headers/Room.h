@@ -11,7 +11,7 @@ struct RoomDef
 {
 	int id;
 	std::string description;
-	std::unique_ptr<Trigger> triggers[20];
+	std::unique_ptr<Trigger> triggers[10];
 	std::vector<int> k; // connected rooms
 	std::vector<std::string> npc;
 	std::stack<int> traps;

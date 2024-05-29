@@ -23,14 +23,14 @@ bool loadFromStream(std::istream& stream, TrapDef& itemDef)
     return true;
 }
 
-TRAP_TYPE sToTrap(std::string str)
+TrapType sToTrap(std::string str)
 {
     if (str == "SPIKE") return SPIKE;
-    if (str == "TRAP") return TRAP;
-    return TRAP;
+    if (str == "MANTRAP") return MANTRAP;
+    return MANTRAP;
 }
 
-void TrapTrigger::setMod(int mod)
+void TrapTrigger::setMod(int& mod)
 {
     modification_ = mod;
 }

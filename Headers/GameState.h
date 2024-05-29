@@ -1,17 +1,32 @@
 #pragma once
 #include <vector>
+#include "../Headers/Room.h"
+//#include "../Headers/Trap.h"
+//#include "../Headers/NPC.h"
+#include "../Headers/Loader.h"
 #include "../Headers/Engine.h"
+#include "../Headers/Player.h"
 
 class GameState
 {
 private:
-	std::vector<int> rooms_;
-	int currRoomId_;
+	Loader load_;
+	Player player_;
+	Registry<RoomDef> roomReg_;
+	Registry<TrapDef> trapReg_;
+	Registry<NPCDef> npcReg_;
+	int currRoomId_ = 0;
 
 public:
+	bool isExit = false;
+
+	Registry<RoomDef>* getRoomReg();
+	Registry<TrapDef>* getTrapReg();
+	Registry<NPCDef>* getNpcReg();
+
+	Player* getPlayer();
+
 	void initGame();
-	int incTrigger(int id);
-	int getCurrTrigger(int id) const;
 	void setCurrRoom(int newId);
-	int getCurrRoom();
+	RoomDef* getCurrRoom();
 };

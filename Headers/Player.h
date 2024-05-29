@@ -4,11 +4,11 @@
 class Player
 {
 private:
-	int hp;
-	int damage;
-	int trap_mod; // bonus that helps escaping traps
-	std::vector<int> items;
+	int trap_mod_ = 0; // bonus that helps escaping traps
+	std::vector<int> items_;
 
 public:
-
+	int hp = 30;
+	int damage = 5;
+	int* getTrapMod();
 };

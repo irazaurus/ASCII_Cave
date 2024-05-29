@@ -39,12 +39,12 @@ bool loadFromStream(std::istream& stream, RoomDef& itemDef)
 		itemDef.npc.push_back(input);
 	}
 
-	// treasures
-	stream >> input;
-	for (int k = std::stoi(input); k > 0; k--)
+	// traps
+	stream >> inp;
+	for (int k = inp; k > 0; k--)
 	{
-		stream >> input;
-		itemDef.traps.push(sToTrap(input));
+		stream >> inp;
+		itemDef.traps.push(inp);
 	}
 
 	return true;

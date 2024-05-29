@@ -1,15 +1,13 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "CommandManager.h"
 
-class OutputManager
+class ConsoleManager
 {
 public:
 	void gameStart();
-};
-
-class InputManager
-{
-public:
-	std::string getChoice(std::string question, std::vector<std::string>* choices);
+	std::string getChoice(CommandManager& manager);
+	void goTo(CommandManager& manager, std::vector<std::string>* options);
+	int getNum(CommandManager& manager);
 };

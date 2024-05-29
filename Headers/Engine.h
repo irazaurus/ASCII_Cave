@@ -8,7 +8,7 @@ template<typename T>
 class Registry
 {
 public:
-	const T* getDef(int id);
+	T* getDef(int id);
 	void loadFromStream(std::istream& stream);
 
 private:
@@ -16,7 +16,7 @@ private:
 };
 
 template<typename T>
-inline const T* Registry<T>::getDef(int id)
+inline T* Registry<T>::getDef(int id)
 {
 	if (id >= 0 && id < items_.size()) return &items_[id];
 	return nullptr;
@@ -42,9 +42,12 @@ inline void Registry<T>::loadFromStream(std::istream& stream)
 
 // TRIGGER
 
+enum TriggerType { TRAP, WIN, FIGHT, LOOT, SHOP };
+
 class Trigger
 {
 public:
+	virtual TriggerType type() = 0;
 	virtual ~Trigger() {}
 	virtual bool execute() = 0;
 };
@@ -53,10 +56,12 @@ Trigger* sToTrigger(std::string s);
 
 class WinTrigger : public Trigger {
 public:
+	TriggerType type() { return WIN; };
 	bool execute();
 };
 
 class LootTrigger : public Trigger {
 public:
+	TriggerType type() { return LOOT; }
 	bool execute();
 };

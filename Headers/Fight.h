@@ -4,5 +4,6 @@
 class FightTrigger : public Trigger
 {
 public:
+	TriggerType type() { return FIGHT; }
 	bool execute();
 };

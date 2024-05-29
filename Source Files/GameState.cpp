@@ -1,26 +1,36 @@
 #include "../Headers/GameState.h"
 
-void GameState::initGame()
-{
-
+void GameState::initGame() {
+	// load from files
+	load_.loadRooms(roomReg_);
+	load_.loadNPC(npcReg_);
+	load_.loadTraps(trapReg_);
 }
 
-int GameState::incTrigger(int id)
+Registry<RoomDef>* GameState::getRoomReg()
 {
-	return ++rooms_.at(id);
+	return &roomReg_;
 }
 
-int GameState::getCurrTrigger(int id) const
+Registry<TrapDef>* GameState::getTrapReg()
 {
-	return rooms_.at(id);
+	return &trapReg_;
 }
 
-void GameState::setCurrRoom(int newId)
+Registry<NPCDef>* GameState::getNpcReg()
 {
+	return &npcReg_;
+}
+
+Player* GameState::getPlayer()
+{
+	return &player_;
+}
+
+void GameState::setCurrRoom(int newId) {
 	currRoomId_ = newId;
 }
 
-int GameState::getCurrRoom()
-{
-	return currRoomId_;
+RoomDef* GameState::getCurrRoom() {
+	return (roomReg_.getDef(currRoomId_));
 }
