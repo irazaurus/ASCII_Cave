@@ -2,40 +2,23 @@
 #include <vector>
 #include <string>
 
-enum Alignment
-{
+enum Alignment {
 	GOOD,
 	NEUTRAL,
 	EVIL
 };
 
-struct NPCDef
-{
+struct NPCDef {
 	int id;
 	std::string name;
 	int damage;
-	int hp;
+	int hp, maxHp;
 	Alignment align;
-	int gold;        // amount of gold after killing it
-	std::string drawing[20];
+	int item;        // item that drops after killing
+	std::string drawing1[20], drawing2[20];
 };
 
 bool loadFromStream(std::istream& stream, NPCDef& itemDef);
 Alignment sToAlignment(std::string str);
 
-// TODO drawings
-
-//class NPCRegister
-//{
-//private:
-//	std::vector<NPCDef> npc_;
-//
-//public:
-//	NPCDef* getNPCDef(int id);
-//	NPCDef* getNPCDef(std::string name);
-//	void loadFromStream(std::istream& stream);
-//	void loadDrawFromStream(std::istream& stream);
-//	Alignment sToAlignment(std::string str);
-//
-//	void draw(int id);
-//};
+void loadDrawFromStream(std::istream& stream, NPCDef* def);

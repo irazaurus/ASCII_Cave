@@ -9,7 +9,42 @@ You entered a small cave in a mountain. It is the place that The King has sent y
 
 1
 You went to the wide room. You see two creatures on the ceiling - there is no going back.
-4 trap fight fight win
+3 trap fight fight
 1 0
-2 bat bat
+2 1 1
+0
+
+2
+You entered a dimly lit chamber in the cave, only to realize too late that the floor was rigged with a concealed trap.
+1 trap
+2 1 5
+0
 1 0
+
+3
+In the depths of the cave, a solitary room stood, its only presence known by the haunting melody of water droplets echoing from the ceiling.
+2 trap trap
+1 4
+0
+2 1 2
+
+4
+Entering the room, you found yourself face to face with a single monstrous creature. Its eyes glowed with an eerie light as it stared you down.
+1 fight
+4 1 3 5 6
+1 2
+0
+
+5
+You cautiously entered the room, only to find yourself surrounded by lurking monsters with glowing eyes.
+5 fight fight fight fight fight
+3 2 4 6
+5 1 1 2 2 3
+0
+
+6
+You step into the dimly lit room and find yourself confronted by a massive, snarling dragon. Its scales shimmer in the faint light, and its hot breath washes over you as it lets out a deep growl.
+2 fight win
+2 4 5
+1 4
+0

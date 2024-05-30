@@ -1,5 +1,6 @@
 #include "../Headers/ConsoleManager.h"
 #include <iostream>
+#include <Windows.h>
 
 void ConsoleManager::gameStart() {
 	std::cout << "Welcome to the ASCII CAVE!\n"
@@ -7,6 +8,13 @@ void ConsoleManager::gameStart() {
 			  << "(Press Enter...) ";
 	std::cin.ignore();
 	//TODO dialog with a King
+}
+
+void ConsoleManager::writeToCoord(int x, int y, std::string s) {
+	HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
+	DWORD written = 0;
+	COORD coord = {x, y};
+	WriteConsoleOutputCharacter(hout, s.c_str(), s.length(), coord, &written);
 }
 
 std::string ConsoleManager::getChoice(CommandManager& manager) {
@@ -31,6 +39,19 @@ void ConsoleManager::goTo(CommandManager& manager, std::vector<std::string>* opt
 	}
 
 	manager.setLast(GO);
+}
+
+void ConsoleManager::fightMenu(Player* player, NPCDef* monster) {
+	system("cls");
+	writeToCoord(10, 0, "You see a " + monster->name + "!");
+
+	// monster drawing
+	for (int i = 0; i < 20; i++)
+		writeToCoord(60, 4 + i, monster->drawing1[i]);
+
+	// parameters
+	writeToCoord(60, 2, monster->name + "'s HP: " + std::to_string(monster->hp));
+	writeToCoord(60, 3, "Your HP: " + std::to_string(player->hp));
 }
 
 bool isNum(std::string s) {

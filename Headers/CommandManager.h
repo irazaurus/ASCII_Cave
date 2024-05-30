@@ -3,7 +3,7 @@
 #include <string>
 #include "GameState.h"
 
-enum Commands { EXIT, HELP, INVALID, ATTACK, GO, INVENTORY, USE, EQUIP, BUY };
+enum Commands { EXIT, HELP, INVALID, ATTACK, GO, INVENTORY, USE, BUY };
 
 class CommandManager
 {
@@ -21,8 +21,9 @@ public:
 	void executeTriggers();
 	bool go(int i);
 	void exit();
+	void inventory();
+	void use();
 	void invalid();
-	bool fight();
 	void help();
 };
 

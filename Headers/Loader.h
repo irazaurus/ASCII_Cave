@@ -3,6 +3,7 @@
 #include "../Headers/Room.h"
 #include "../Headers/NPC.h"
 #include "../Headers/Engine.h"
+#include "../Headers/Item.h"
 #include <string>
 #include <fstream>
 
@@ -14,7 +15,7 @@ public:
 	void loadRooms(Registry<RoomDef>& roomReg);
 	void loadNPC(Registry<NPCDef>& npcReg);
 	void loadTraps(Registry<TrapDef>& trapReg);
-	void loadPlayer();
+	void loadItems(Registry<ItemDef>& itemReg);
 
 private:
 	std::ifstream stream;

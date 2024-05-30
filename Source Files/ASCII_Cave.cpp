@@ -23,7 +23,6 @@ int main()
 
     // game loop
     while (true) {
-
         if (game.isExit) break;
 
         system("cls");
@@ -34,6 +33,8 @@ int main()
         commandMan.executeTriggers();
         std::cin.ignore();
 
+        if (game.isExit) break;
+
         // choices to go
         for (size_t i = 0; i < currRoom->k.size(); i++) {
             const RoomDef* r = game.getRoomReg()->getDef(currRoom->k[i]);
@@ -42,6 +43,8 @@ int main()
 
         ioManager.goTo(commandMan, &choices);
         choices.clear();
+
+        if (game.isExit) break;
     }
 
     return 0;

@@ -15,6 +15,7 @@ private:
 	Registry<RoomDef> roomReg_;
 	Registry<TrapDef> trapReg_;
 	Registry<NPCDef> npcReg_;
+	Registry<ItemDef> itemReg_;
 	int currRoomId_ = 0;
 
 public:
@@ -23,6 +24,7 @@ public:
 	Registry<RoomDef>* getRoomReg();
 	Registry<TrapDef>* getTrapReg();
 	Registry<NPCDef>* getNpcReg();
+	Registry<ItemDef>* getItemReg();
 
 	Player* getPlayer();
 

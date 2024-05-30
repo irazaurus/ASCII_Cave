@@ -42,7 +42,7 @@ inline void Registry<T>::loadFromStream(std::istream& stream)
 
 // TRIGGER
 
-enum TriggerType { TRAP, WIN, FIGHT, LOOT, SHOP };
+enum TriggerType { TRAP, WIN, FIGHT, LOOT };
 
 class Trigger
 {

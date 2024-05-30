@@ -1,0 +1,25 @@
+3
+
+0
+Basic sword
+Base damage up to 5.
+0 2 0
+0 1
+
+1
+Basic armor
+Your regular armor.
+0 0 0
+0 1
+
+2
+Health Potion
+Heals 10 hp.
+0 0 2
+1 0
+
+3
+Legendary sword
+Base damage up to 100!
+0 97 0
+0 1

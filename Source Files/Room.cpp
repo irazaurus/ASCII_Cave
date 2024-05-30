@@ -21,6 +21,7 @@ bool loadFromStream(std::istream& stream, RoomDef& itemDef)
 	{
 		stream >> input;
 		itemDef.triggers[k] = std::unique_ptr<Trigger>(sToTrigger(input));
+		itemDef.lastTrigger = k;
 	}
 
 	// connected rooms k
@@ -35,8 +36,8 @@ bool loadFromStream(std::istream& stream, RoomDef& itemDef)
 	stream >> input;
 	for (int k = std::stoi(input); k > 0; k--)
 	{
-		stream >> input;
-		itemDef.npc.push_back(input);
+		stream >> inp;
+		itemDef.npc.push_back(inp);
 	}
 
 	// traps

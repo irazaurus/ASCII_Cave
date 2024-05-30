@@ -5,25 +5,29 @@ void GameState::initGame() {
 	load_.loadRooms(roomReg_);
 	load_.loadNPC(npcReg_);
 	load_.loadTraps(trapReg_);
+	load_.loadItems(itemReg_);
+	player_.getItems()->push_back(0);
+	player_.getItems()->push_back(1);
+	player_.getItems()->push_back(2);
 }
 
-Registry<RoomDef>* GameState::getRoomReg()
-{
+Registry<RoomDef>* GameState::getRoomReg() {
 	return &roomReg_;
 }
 
-Registry<TrapDef>* GameState::getTrapReg()
-{
+Registry<TrapDef>* GameState::getTrapReg() {
 	return &trapReg_;
 }
 
-Registry<NPCDef>* GameState::getNpcReg()
-{
+Registry<NPCDef>* GameState::getNpcReg() {
 	return &npcReg_;
 }
 
-Player* GameState::getPlayer()
-{
+Registry<ItemDef>* GameState::getItemReg() {
+	return &itemReg_;
+}
+
+Player* GameState::getPlayer() {
 	return &player_;
 }
 

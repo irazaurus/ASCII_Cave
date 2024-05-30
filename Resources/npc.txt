@@ -1,36 +1,36 @@
 5
 
-1
+0
 Strange Wizard
 GOOD
 1000
 0
 0
 
-2
+1
 Bat
 NEUTRAL
 5
 0
-5
+2
 
-3
+2
 Slime
 EVIL
 20
 5
-20
+2
 
-4
+3
 SleepWalker
 EVIL
 25
 10
-25
+2
 
-5
+4
 Dragon
 NEUTRAL
 500
 15
-50
+3
